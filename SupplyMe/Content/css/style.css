@@ -1,0 +1,218 @@
+﻿* {
+    font-family: 'Montserrat', sans-serif;
+}
+body {
+    margin: 125px;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+.clear-fix {
+    clear: both;
+}
+.full-width {
+    width: 100%;
+    text-align: center;
+}
+body {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.login-body {
+    background: url("../img/backgrounds/login-background.jpg") no-repeat center center fixed;
+}
+.request-body {
+    background: url("../img/backgrounds/request-background.jpg") no-repeat center center fixed;
+}
+.title {
+    font-size: 65px;
+    margin: 80px 0;
+    color: #fff;
+    text-align: center;
+    line-height: 46px;
+    letter-spacing: 2px;
+}
+.request-title {
+    font-size: 46px;
+    margin: 70px 0 30px 0;
+    color: #fff;
+    line-height: 42px;
+    letter-spacing: 2px;
+}
+.request-title strong {
+    font-weight: 700;
+}
+.login-widget > div {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 30px;
+    height: 370px;
+}
+.login-widget .login-title {
+    font-size: 40px;
+    padding: 40px 0;
+    line-height: 28px;
+    color: #000;
+    text-align: center;
+    letter-spacing: 1px;
+}
+.login-widget input {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 50px;
+    background: transparent;
+    border: 1px solid #000;
+    border-radius: 40px;
+}
+.login-widget input::-webkit-input-placeholder { 
+   color: #b49999;
+   padding: 40px;
+   font-size: 16px;
+}
+
+.login-widget input:-moz-placeholder { /* Firefox 18- */ 
+   color: #b49999;
+   padding: 40px;
+   font-size: 16px;
+}
+
+.login-widget input::-moz-placeholder {  /* Firefox 19+ */ 
+   color: #b49999;
+   padding: 40px;
+   font-size: 16px;
+}
+
+.login-widget input:-ms-input-placeholder {  
+   color: #b49999;
+   padding: 40px;
+   font-size: 16px;
+}
+
+input:focus::-webkit-input-placeholder, textarea:focus::-webkit-input-placeholder { color:transparent !important; }
+input:focus:-moz-placeholder, textarea:focus::-webkit-input-placeholder { color:transparent !important; } /* FF 4-18 */
+input:focus::-moz-placeholder, textarea:focus::-webkit-input-placeholder { color:transparent !important; } /* FF 19+ */
+input:focus:-ms-input-placeholder, textarea:focus::-webkit-input-placeholder { color:transparent !important; } /* IE 10+ */
+
+input#email {
+    background: url("../img/email_icon.png") no-repeat left;
+}
+input#password {
+    background: url("../img/pass_icon.png") no-repeat left;
+}
+.login-widget button {
+    box-shadow: none;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    height: 50px;
+    background-color: #ff6b57;
+    border: none;
+    color: #fff;
+    display: inline-block;
+    width: 125px;
+    font-size: 16px;
+}
+.text {
+    font-size: 22px;
+    font-family: 'Lato', sans-serif;
+    color: #fff;
+    line-height: 25px;
+    padding: 7px 0;
+    letter-spacing: 1px;
+}
+.hr-line {
+    width: 170px;
+    color: #fff;
+    margin: 15px auto;
+}
+.sub-title {
+    margin-top: 35px;
+    margin-bottom: 45px;
+}
+.request-form > div {
+    margin: 15px 0;
+}
+.request-form > div > input {
+    height: 68px !important;
+    background: transparent;
+    border: 1px solid white;
+    border-radius: 0;
+    font-size: 14px;
+    color: #fff;
+    padding: 30px;
+}
+.request-form > div > input:focus {
+    border-color: #fff !important;
+}
+.request-form > div > input::-webkit-input-placeholder, .request-form textarea::-webkit-input-placeholder { 
+    color: #fff;
+    font-size: 14px;
+    text-align: left;
+}
+
+.request-form > div > input:-moz-placeholder, .request-form textarea:-moz-placeholder { /* Firefox 18- */ 
+    color: #fff;
+    font-size: 14px;
+    text-align: left;
+}
+
+.request-form > div > input::-moz-placeholder, .request-form textarea::-moz-placeholder {  /* Firefox 19+ */ 
+    color: #fff;
+    font-size: 14px;
+    text-align: left;
+}
+
+.request-form > div > input:-ms-input-placeholder, .request-form textarea:-ms-input-placeholder {  
+    color: #fff;
+    font-size: 14px;
+    text-align: left;
+}
+.request-form .bselect-caret {
+    height: 58px !important;
+    border: 1px solid white;
+    border-radius: 0;
+    background: transparent;
+}
+.request-form .bselect-caret span {
+    border-top-color: #fff;
+}
+.request-form .bselect {
+    width: 100% !important;
+    font-size: 14px;
+}
+.request-form .bselect-label {
+    margin-right: -19px;
+    width: 100% !important;
+    height: 68px !important;   
+    border: 1px solid white;
+    border-right: transparent;
+    background: transparent;
+    color: white;
+    border-radius: 0;
+    padding: 20px 30px;
+    font-size: 14px;
+}
+.bselect-label:hover, .bselect-caret:hover {
+    background: transparent !important;
+}
+.request-form textarea {
+    height: 198px;
+    border: 1px solid #fff;
+    background: transparent;
+    padding: 30px;
+    padding-top: 15px;
+    text-align: left;
+    color: #fff;
+}
+.request-form .submit-btn {
+    font-size: 18px;
+    font-weight: 700;
+    width: 164px;
+    height: 70px;
+    background: #fff;
+    border: none;
+}
