@@ -1,0 +1,57 @@
+﻿@model SupplyMe.Models.ItemRowPartial
+
+@if(Model != null) {
+    <div class="item" id="row_@Model.RowIndex">
+    <div class="col-lg-6">
+        <select>
+            <option>SELECT A CATEGORY</option>
+            <optgroup label="Swedish Cars">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+            </optgroup>
+            <optgroup label="German Cars">
+                <option value="mercedes">Mercedes</option>
+                <option value="audi">Audi</option>
+            </optgroup>
+        </select>
+    </div>
+    <div class="col-lg-3">
+        <input class="form-control qty" placeholder="QTY" type="text" />
+    </div>
+    @if(Model.RowIndex == 0) {
+        <div class="col-lg-3">
+            <select>
+                <option>SELECT AN ITEM</option>
+                <optgroup label="Swedish Cars">
+                    <option value="volvo">Volvo</option>
+                    <option value="saab">Saab</option>
+                </optgroup>
+                <optgroup label="German Cars">
+                    <option value="mercedes">Mercedes</option>
+                    <option value="audi">Audi</option>
+                </optgroup>
+            </select>
+        </div>
+    } else {
+        <div class="col-lg-2">
+            <select>
+                <option>SELECT AN ITEM</option>
+                <optgroup label="Swedish Cars">
+                    <option value="volvo">Volvo</option>
+                    <option value="saab">Saab</option>
+                </optgroup>
+                <optgroup label="German Cars">
+                    <option value="mercedes">Mercedes</option>
+                    <option value="audi">Audi</option>
+                </optgroup>
+            </select>
+        </div>
+        <div class="remove-item">
+            <div class="col-lg-1">
+                <button class="pull-left" onclick="removeItem(@Model.RowIndex);return false;"><i class="fa fa-minus"></i></button>
+            </div>
+        </div>
+    }
+    </div>
+    <div class="clear-fix"></div>
+}
