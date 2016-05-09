@@ -45,7 +45,7 @@
     $("select").bselect();
 
     function addItem() {
-        var rowid = $(".items-container div:first-child").attr("id");
+        var rowid = $(".items-container div.item:first-child").attr("id");
         var rowindex = rowid.split('_')[1];
 
         $.ajax({
