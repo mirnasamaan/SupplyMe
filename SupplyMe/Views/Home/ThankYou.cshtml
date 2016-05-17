@@ -1,0 +1,61 @@
+﻿@model SupplyMe.Models.OrderReport
+@{
+    ViewBag.Title = "Thank You!";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="request-title col-lg-12">
+            WELCOME BACK, <strong>@User.Identity.Name</strong>
+        </div>
+    </div>
+    <div class="row">
+        <div class="text col-lg-10">
+            We received your order and will get back to you as soon as possible. Thank You !
+        </div>
+        <div class="clear-fix"></div>
+        <hr class="hr-line" />
+    </div>
+    <div class="row">
+        <div class="request-title sub-title col-xs-6">
+            <strong>ORDER REPORT</strong>
+        </div>
+        <div class="col-xs-6">
+            <button type="button" onclick="location.href='/request';" class="pull-right submit-btn">REORDER</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="report-item">
+            <div class="col-xs-2">Order ID:</div>
+            <div class="col-xs-10">@Model.OrderId</div>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="report-item">
+            <div class="col-xs-2">Order Message:</div>
+            <div class="col-xs-10">@Model.OrderMsg</div>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="report-item">
+            <div class="col-xs-12 col-lg-12">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Qty</th>
+                            <th>Unit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach(var item in @Model.OrderReportDetails) {
+                        <tr>
+                            <td>@item.ItemName</td>
+                            <td>@item.Qty</td>
+                            <td>@item.UnitName</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

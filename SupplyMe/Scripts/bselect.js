@@ -304,7 +304,7 @@
                     li.data( "value", this.value );
                     mapping[ this.value ] = i;
 
-                    li.html( "<a href='#'>" + this.text + "</a>" );
+                    li.html( "<a>" + this.text + "</a>" );
                 } else {
                     li.text( this.label );
                 }
@@ -565,7 +565,7 @@
             selected: null
         },
         i18n: {
-            selectAnOption: "Select an option",
+            selectAnOption: "SELECT UNIT",
             noOptionsAvailable: "No options available."
         }
     };

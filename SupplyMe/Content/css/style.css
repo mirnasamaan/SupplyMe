@@ -3,6 +3,7 @@
 }
 body {
     margin: 125px;
+    background: no-repeat center center fixed;
 }
 input:focus,
 select:focus,
@@ -10,6 +11,9 @@ textarea:focus,
 button:focus {
     outline: none !important;
     box-shadow: none !important;
+}
+footer {
+    height: 20px;
 }
 .clear-fix {
     clear: both;
@@ -28,10 +32,10 @@ body {
     background-size: cover;
 }
 .login-body {
-    background: url("../img/backgrounds/login-background.jpg") no-repeat center center fixed;
+    background-image: url("../img/backgrounds/login-background.jpg");
 }
 .request-body {
-    background: url("../img/backgrounds/request-background.jpg") no-repeat center center fixed;
+    background-image: url("../img/backgrounds/request-background.jpg");
 }
 .title {
     font-size: 65px;
@@ -101,7 +105,7 @@ input:focus:-moz-placeholder, textarea:focus::-webkit-input-placeholder { color:
 input:focus::-moz-placeholder, textarea:focus::-webkit-input-placeholder { color:transparent !important; } /* FF 19+ */
 input:focus:-ms-input-placeholder, textarea:focus::-webkit-input-placeholder { color:transparent !important; } /* IE 10+ */
 
-input#email {
+input#name {
     background: url("../img/email_icon.png") no-repeat left;
 }
 input#password {
@@ -209,9 +213,10 @@ input#password {
     padding: 30px;
     padding-top: 15px;
     text-align: left;
+    margin: 15px 0;
     color: #fff;
 }
-.request-form .submit-btn {
+.submit-btn {
     font-size: 18px;
     font-weight: 700;
     width: 164px;
@@ -235,6 +240,38 @@ input#password {
     padding: 0 20px;
     color: #fff;
 }
-.remove-item button {
-    margin-top: 15px;
+.report-item {
+    color: #fff;
+    margin: 10px 0;
+}
+.report-item table {
+    width: 100%;
+    text-align: left;
+}
+.report-item table th {
+    padding: 15px;
+    font-weight: 700;
+    border: 1px solid;
+}
+.report-item table td {
+    padding: 0 15px;
+    border: 1px solid;
+}
+.validation-summary {
+    display: inline-block;
+}
+.validation-summary ul {
+    padding: 0 15px;
+}
+.validation-summary li {
+    color: white;
+    border: 2px solid red;
+    list-style-type: none;
+    padding: 20px;
+    float: left;
+}
+.error {
+    color: red;
+    border: 1px solid;
+    padding: 0 10px;
 }

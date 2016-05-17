@@ -11,14 +11,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-</head>
-<body class="@ViewBag.bodyClass">
-    @Scripts.Render("~/Scripts/jquery-2.2.3.min.js")
+    <script src="https://code.jquery.com/jquery-1.12.3.js" integrity="sha256-1XMpEtA4eKXNNpXcJ1pmMPs8JV+nwLdEqwiJeCQEkyc=" crossorigin="anonymous"></script>
     @Scripts.Render("~/Scripts/bootstrap.js")
-    @Scripts.Render("~/Scripts/bselect.min.js")
+    @Scripts.Render("~/Scripts/bselect.js")
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+
+</head>
+<body class="@ViewBag.bodyclass">
     @RenderBody()
-    
-    @*Scripts.Render("~/bundles/jquery")*@
     @RenderSection("scripts", required: false)
+    <footer></footer>
 </body>
 </html>

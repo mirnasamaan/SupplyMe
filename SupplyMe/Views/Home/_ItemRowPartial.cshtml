@@ -1,57 +1,43 @@
-﻿@model SupplyMe.Models.ItemRowPartial
+﻿@model SupplyMe.Models.OrderDetailsVM
 
-@if(Model != null) {
-    <div class="item" id="row_@Model.RowIndex">
-    <div class="col-lg-6">
-        <select>
-            <option>SELECT A CATEGORY</option>
-            <optgroup label="Swedish Cars">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-            </optgroup>
-            <optgroup label="German Cars">
-                <option value="mercedes">Mercedes</option>
-                <option value="audi">Audi</option>
-            </optgroup>
-        </select>
-    </div>
-    <div class="col-lg-3">
-        <input class="form-control qty" placeholder="QTY" type="text" />
-    </div>
-    @if(Model.RowIndex == 0) {
+@if (Model != null)
+{
+    <div class="item order-detail">
+        <div class="col-lg-6">
+            <select onchange="getUnits(this);" class="order-detail-item">
+                <option value="0">SELECT ITEM</option>
+                @foreach (DataLayer.Context.Category cat in ViewBag.Cats)
+                {
+                    <optgroup label="@cat.CategoryName">
+                        @foreach (DataLayer.Context.Item item in cat.Items)
+                        {
+                            <option value="@item.ItemId">@item.ItemName</option>
+                        }
+                        @foreach (DataLayer.Context.Category subcat in cat.Category1)
+                        {
+                            <optgroup label="@subcat.CategoryName">
+                                @foreach (DataLayer.Context.Item item in subcat.Items)
+                                {
+                                    <option value="@item.ItemId">@item.ItemName</option>
+                                }
+                            </optgroup>
+                        }
+                    </optgroup>
+                }
+            </select>
+            <input type="hidden" class="item-id" />
+        </div>
         <div class="col-lg-3">
-            <select>
-                <option>SELECT ITEM</option>
-                <optgroup label="Swedish Cars">
-                    <option value="volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                </optgroup>
-                <optgroup label="German Cars">
-                    <option value="mercedes">Mercedes</option>
-                    <option value="audi">Audi</option>
-                </optgroup>
+            <input class="form-control qty order-detail-qty" placeholder="QTY" type="text" @(Model.Qty == 0 ? "" : "value="+@Model.Qty+"") />
+        </div>
+        <div class="col-lg-2 unit-parent">
+            <select class="order-detail-unit">
+                <option value="">SELECT UNIT</option>
             </select>
         </div>
-    } else {
-        <div class="col-lg-2">
-            <select>
-                <option>SELECT ITEM</option>
-                <optgroup label="Swedish Cars">
-                    <option value="volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                </optgroup>
-                <optgroup label="German Cars">
-                    <option value="mercedes">Mercedes</option>
-                    <option value="audi">Audi</option>
-                </optgroup>
-            </select>
+        <div class="col-lg-1 remove-item">
+            <button class="pull-left order-detail-delete" onclick="removeItem(this);return false;"><i class="fa fa-minus"></i></button>
         </div>
-        <div class="remove-item">
-            <div class="col-lg-1">
-                <button class="pull-left" onclick="removeItem(@Model.RowIndex);return false;"><i class="fa fa-minus"></i></button>
-            </div>
-        </div>
-    }
-    <div class="clear-fix"></div>
+        <div class="clear-fix"></div>
     </div>
 }

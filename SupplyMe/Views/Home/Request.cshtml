@@ -1,12 +1,12 @@
 ﻿@{
     ViewBag.Title = "Request";
 }
-@model SupplyMe.Models.ItemRowPartial
+@model SupplyMe.Models.OrderVM
 
 <div class="container">
     <div class="row">
         <div class="request-title col-lg-12">
-            WELCOME BACK, <strong>HOTEL NAME</strong>
+            WELCOME BACK, <strong>@User.Identity.Name</strong>
         </div>
     </div>
     <div class="row">
@@ -21,47 +21,136 @@
             <strong>SUPPLY REQUEST</strong>
         </div>
     </div>
-        @using (Html.BeginForm("Request", "Home", FormMethod.Post, new { @class = "request-form" }))
-        {
+    @using (Html.BeginForm("Request", "Home", FormMethod.Post, new { @class = "request-form", id = "request-form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="validation-summary">
+            @Html.ValidationSummary()
+        </div>
         <div class="row add-item">
             <div class="col-lg-12">
-                <button class="pull-left" onclick="addItem();return false;"><i class="fa fa-plus"></i></button>
+                <button type="button" class="pull-left" onclick="addItem()"><i class="fa fa-plus"></i></button>
                 <div class="pull-left">Add Another Item</div>
             </div>
         </div>
         
         <div class="row items-container">
-            @Html.Partial("_ItemRowPartial", Model)
+            @if (Model.OrderDetails.Count == 0)
+            {
+                @Html.Partial("_ItemRowPartial", new SupplyMe.Models.OrderDetailsVM())
+            }
+            else
+            {
+                foreach (var item in Model.OrderDetails)
+                {
+                @Html.Partial("_ItemRowPartial", item)
+                }
+            }
             <div class="col-lg-12">
-                <textarea class="full-width" placeholder="Type your message here"></textarea>
+                <textarea class="full-width" name="OrderMessage" placeholder="Type your message here">@Model.OrderMessage</textarea>
             </div>
             <div class="col-lg-12">
-                <button class="pull-right submit-btn">SUBMIT</button>
+                <button type="submit" class="pull-right submit-btn">SUBMIT</button>
             </div>
         </div>
-        }
+    }
 </div>
 <script>
-    $("select").bselect();
+
+    $(document).ready(function () {
+        $("select").bselect();
+        ReloadFormItems();
+        $.validator.addMethod("itemRequired", function (value, element) {
+            return (value != "0");
+        }, function(params, element) {
+            return 'This field is required.'
+        });
+        validateForm();
+    });
 
     function addItem() {
-        var rowid = $(".items-container div.item:first-child").attr("id");
-        var rowindex = rowid.split('_')[1];
-
         $.ajax({
             type: "POST",
-            data: { RowIndex: rowindex },
             url: "/Home/AddItemPartialView",
             success: function (result) {
                 $(".items-container").prepend(result);
                 $("select").bselect();
+                ReloadFormItems();
             }
         });
     }
 
-    function removeItem(rowid) {
-        $("#row_" + rowid).fadeOut("slow", function () {
-            $("#row_" + rowid).remove();
+    function getUnits(e) {
+        var selected = $(e).val();
+        $(e).parent().children("input").val(selected);
+        var parent = $(e).parent().parent();
+        if (selected != 0) {
+            $.ajax({
+                url: "/Home/GetUnitsByItemId",
+                type: "POST",
+                data: { itemId: selected },
+                success: function (units) {
+                    $(parent).children(".unit-parent").html("<select class='order-detail-unit'></select>");
+                    for (var i = 0; i < units.length; i++) {
+                        $(parent).children(".unit-parent").children(".order-detail-unit").append("<option value=" + units[i].UnitId + ">" + units[i].UnitName + "</option>");
+                    }
+                    $(".order-detail-unit").bselect();
+                    ReloadFormItems()
+                }
+            });
+        }
+    }
+
+    function removeItem(element) {
+        if ($(".order-detail").length > 1) {
+            $(element).parent().parent().fadeOut("slow", function () {
+                $(element).parent().parent().remove();
+                ReloadFormItems();
+            });
+        } else {
+            alert("You cannot remove the last item");
+        }
+    }
+
+    function ReloadFormItems() {
+        $(".items-container .order-detail-item").each(function (order) {
+            $(this).attr("name", "OrderDetails[" + order + "].ItemId");
+        });
+        $(".items-container .order-detail-qty").each(function (order) {
+            $(this).attr("name", "OrderDetails[" + order + "].Qty");
+            $(this).attr("id", "qty_" + order);
+        });
+        $(".items-container .order-detail-unit").each(function (order) {
+            $(this).attr("name", "OrderDetails[" + order + "].UnitId");
+        });
+        $(".items-container .item-id").each(function (order) {
+            $(this).attr("name", "ItemIdHidden[" + order + "]");
+        });
+        $(".items-container .order-detail-item").parent().children(".bselect").each(function (order) {
+            $(this).attr("id", "itemId_" + order);
+        });
+
+        $('#request-form').data('validator', null);
+        $("#request-form").unbind('validate');
+        $("label.error").remove();
+        validateForm();
+    }
+
+    function validateForm() {
+        $("#request-form").validate({
+            ignore: [],
+            rules: (function () {
+                results = {}
+                for (var i = 0; i < $(".order-detail").length; i++) {
+                    results["ItemIdHidden[" + i + "]"] = { itemRequired: true }
+                    results["OrderDetails[" + i + "].Qty"] = { required: true, number: true }
+                }
+                return results;
+            })(),
+            errorPlacement: function (error, element) {
+                error.insertAfter(element);
+            }
         });
     }
+
 </script>
