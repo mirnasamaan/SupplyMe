@@ -40,8 +40,8 @@ namespace SupplyMe.Controllers
         {
             if (ModelState.IsValid)
             {
-                string hashedPassword = PasswordHash.GetMd5Hash(hotel.Password);
-                Hotel db_hotel = _hotelRepo.HotelExists(hotel.UserName, hashedPassword);
+                //string hashedPassword = PasswordHash.GetMd5Hash(hotel.Password);
+                Hotel db_hotel = _hotelRepo.HotelExists(hotel.UserName, hotel.Password);
                 if (db_hotel == null)
                 {
                     ModelState.AddModelError("", "Please check your username and password");
