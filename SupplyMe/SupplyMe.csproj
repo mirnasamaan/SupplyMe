@@ -126,7 +126,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CaptchaHelper.cs" />
     <Compile Include="Helpers\PasswordHash.cs" />
+    <Compile Include="Models\CategoryVM.cs" />
     <Compile Include="Models\HotelLogin.cs" />
     <Compile Include="Models\ItemRowPartial.cs" />
     <Compile Include="Models\OrderDetailsVM.cs" />
@@ -194,6 +196,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\css\Site.css" />
+    <None Include="Properties\PublishProfiles\SupplyMePublish.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\bselect.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
@@ -223,9 +226,11 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Home\Request.cshtml" />
+    <Content Include="Views\Home\SupplyRequest.cshtml" />
     <Content Include="Views\Home\_ItemRowPartial.cshtml" />
     <Content Include="Views\Home\ThankYou.cshtml" />
+    <Content Include="Views\Home\_ItemSelectPartial.cshtml" />
+    <Content Include="Views\Shared\_LoadingPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

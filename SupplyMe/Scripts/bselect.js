@@ -290,6 +290,11 @@
                     }
                 } else {
                     classes = "bselect-option-group";
+                    if($(this).hasClass("parent-cat")){
+                        classes += " parent-cat";
+                    } else if ($(this).hasClass("sub-cat")) {
+                        classes += " sub-cat";
+                    }
                 }
 
                 li = $( "<li />" ).attr({
@@ -565,16 +570,17 @@
             selected: null
         },
         i18n: {
-            selectAnOption: "SELECT UNIT",
-            noOptionsAvailable: "No options available."
+            selectAnOption: "UNIT",
+            noOptionsAvailable: "Select item first."
         }
     };
 
     $( document ).on( "click.bselect", "label", function( e ) {
         var i, len, id;
-
+        
         for ( i = 0, len = instances.length; i < len; i++ ) {
-            id = instances[ i ][ 0 ].id;
+            id = instances[i][0].id;
+            alert(id);
             if ( id && $( e.target ).attr( "for" ) === id ) {
                 _callMethod( instances[ i ], "show" );
                 return false;
@@ -585,7 +591,7 @@
 
         for ( i = 0, len = instances.length; i < len; i++ ) {
             data = instances[ i ].data( dataName );
-
+            //alert(JSON.stringify(data));
             if ( data.open && !data.element.has( e.target ).length ) {
                 _callMethod( instances[ i ], "hide" );
             }

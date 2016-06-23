@@ -4,40 +4,40 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SupplyMeModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="SupplyMeModelStoreContainer">
-          <EntitySet Name="Category" EntityType="SupplyMeModel.Store.Category" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Hotel" EntityType="SupplyMeModel.Store.Hotel" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Item" EntityType="SupplyMeModel.Store.Item" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="ItemUnit" EntityType="SupplyMeModel.Store.ItemUnit" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Order" EntityType="SupplyMeModel.Store.Order" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="OrderDetails" EntityType="SupplyMeModel.Store.OrderDetails" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Unit" EntityType="SupplyMeModel.Store.Unit" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_Category_Category" Association="SupplyMeModel.Store.FK_Category_Category">
+      <Schema Namespace="supplymeModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="supplymeModelStoreContainer">
+          <EntitySet Name="Category" EntityType="supplymeModel.Store.Category" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Hotel" EntityType="supplymeModel.Store.Hotel" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Item" EntityType="supplymeModel.Store.Item" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ItemUnit" EntityType="supplymeModel.Store.ItemUnit" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Order" EntityType="supplymeModel.Store.Order" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OrderDetails" EntityType="supplymeModel.Store.OrderDetails" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Unit" EntityType="supplymeModel.Store.Unit" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Category_Category" Association="supplymeModel.Store.FK_Category_Category">
             <End Role="Category" EntitySet="Category" />
             <End Role="Category1" EntitySet="Category" />
           </AssociationSet>
-          <AssociationSet Name="FK_Item_Category" Association="SupplyMeModel.Store.FK_Item_Category">
+          <AssociationSet Name="FK_Item_Category" Association="supplymeModel.Store.FK_Item_Category">
             <End Role="Category" EntitySet="Category" />
             <End Role="Item" EntitySet="Item" />
           </AssociationSet>
-          <AssociationSet Name="FK_ItemUnit_Item" Association="SupplyMeModel.Store.FK_ItemUnit_Item">
+          <AssociationSet Name="FK_ItemUnit_Item" Association="supplymeModel.Store.FK_ItemUnit_Item">
             <End Role="Item" EntitySet="Item" />
             <End Role="ItemUnit" EntitySet="ItemUnit" />
           </AssociationSet>
-          <AssociationSet Name="FK_ItemUnit_Unit" Association="SupplyMeModel.Store.FK_ItemUnit_Unit">
+          <AssociationSet Name="FK_ItemUnit_Unit" Association="supplymeModel.Store.FK_ItemUnit_Unit">
             <End Role="Unit" EntitySet="Unit" />
             <End Role="ItemUnit" EntitySet="ItemUnit" />
           </AssociationSet>
-          <AssociationSet Name="FK_OrderDetails_Item" Association="SupplyMeModel.Store.FK_OrderDetails_Item">
+          <AssociationSet Name="FK_OrderDetails_Item" Association="supplymeModel.Store.FK_OrderDetails_Item">
             <End Role="Item" EntitySet="Item" />
             <End Role="OrderDetails" EntitySet="OrderDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_OrderDetails_Order" Association="SupplyMeModel.Store.FK_OrderDetails_Order">
+          <AssociationSet Name="FK_OrderDetails_Order" Association="supplymeModel.Store.FK_OrderDetails_Order">
             <End Role="Order" EntitySet="Order" />
             <End Role="OrderDetails" EntitySet="OrderDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_OrderDetails_Unit" Association="SupplyMeModel.Store.FK_OrderDetails_Unit">
+          <AssociationSet Name="FK_OrderDetails_Unit" Association="supplymeModel.Store.FK_OrderDetails_Unit">
             <End Role="Unit" EntitySet="Unit" />
             <End Role="OrderDetails" EntitySet="OrderDetails" />
           </AssociationSet>
@@ -85,7 +85,6 @@
           </Key>
           <Property Name="OrderId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="UserId" Type="int" />
-          <Property Name="OrderMessage" Type="ntext" />
         </EntityType>
         <EntityType Name="OrderDetails">
           <Key>
@@ -96,6 +95,7 @@
           <Property Name="OrderId" Type="int" Nullable="false" />
           <Property Name="OrderUnitId" Type="int" />
           <Property Name="OrderItemId" Type="int" Nullable="false" />
+          <Property Name="OrderMessage" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Unit">
           <Key>
@@ -105,8 +105,8 @@
           <Property Name="UnitName" Type="nvarchar" Nullable="false" MaxLength="500" />
         </EntityType>
         <Association Name="FK_Category_Category">
-          <End Role="Category" Type="SupplyMeModel.Store.Category" Multiplicity="0..1" />
-          <End Role="Category1" Type="SupplyMeModel.Store.Category" Multiplicity="*" />
+          <End Role="Category" Type="supplymeModel.Store.Category" Multiplicity="0..1" />
+          <End Role="Category1" Type="supplymeModel.Store.Category" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
               <PropertyRef Name="CategoryId" />
@@ -117,10 +117,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Item_Category">
-          <End Role="Category" Type="SupplyMeModel.Store.Category" Multiplicity="1">
+          <End Role="Category" Type="supplymeModel.Store.Category" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Item" Type="SupplyMeModel.Store.Item" Multiplicity="*" />
+          <End Role="Item" Type="supplymeModel.Store.Item" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
               <PropertyRef Name="CategoryId" />
@@ -131,10 +131,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ItemUnit_Item">
-          <End Role="Item" Type="SupplyMeModel.Store.Item" Multiplicity="1">
+          <End Role="Item" Type="supplymeModel.Store.Item" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="ItemUnit" Type="SupplyMeModel.Store.ItemUnit" Multiplicity="*" />
+          <End Role="ItemUnit" Type="supplymeModel.Store.ItemUnit" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Item">
               <PropertyRef Name="ItemId" />
@@ -145,10 +145,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ItemUnit_Unit">
-          <End Role="Unit" Type="SupplyMeModel.Store.Unit" Multiplicity="1">
+          <End Role="Unit" Type="supplymeModel.Store.Unit" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="ItemUnit" Type="SupplyMeModel.Store.ItemUnit" Multiplicity="*" />
+          <End Role="ItemUnit" Type="supplymeModel.Store.ItemUnit" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Unit">
               <PropertyRef Name="UnitId" />
@@ -159,10 +159,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderDetails_Item">
-          <End Role="Item" Type="SupplyMeModel.Store.Item" Multiplicity="1">
+          <End Role="Item" Type="supplymeModel.Store.Item" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="OrderDetails" Type="SupplyMeModel.Store.OrderDetails" Multiplicity="*" />
+          <End Role="OrderDetails" Type="supplymeModel.Store.OrderDetails" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Item">
               <PropertyRef Name="ItemId" />
@@ -173,10 +173,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderDetails_Order">
-          <End Role="Order" Type="SupplyMeModel.Store.Order" Multiplicity="1">
+          <End Role="Order" Type="supplymeModel.Store.Order" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="OrderDetails" Type="SupplyMeModel.Store.OrderDetails" Multiplicity="*" />
+          <End Role="OrderDetails" Type="supplymeModel.Store.OrderDetails" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Order">
               <PropertyRef Name="OrderId" />
@@ -187,8 +187,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderDetails_Unit">
-          <End Role="Unit" Type="SupplyMeModel.Store.Unit" Multiplicity="0..1" />
-          <End Role="OrderDetails" Type="SupplyMeModel.Store.OrderDetails" Multiplicity="*" />
+          <End Role="Unit" Type="supplymeModel.Store.Unit" Multiplicity="0..1" />
+          <End Role="OrderDetails" Type="supplymeModel.Store.OrderDetails" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Unit">
               <PropertyRef Name="UnitId" />
@@ -198,38 +198,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="SupplyMeModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="supplymeModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="SupplyMeEntities" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="Categories" EntityType="SupplyMeModel.Category" />
-          <EntitySet Name="Hotels" EntityType="SupplyMeModel.Hotel" />
-          <EntitySet Name="Items" EntityType="SupplyMeModel.Item" />
-          <EntitySet Name="Orders" EntityType="SupplyMeModel.Order" />
-          <EntitySet Name="OrderDetails" EntityType="SupplyMeModel.OrderDetail" />
-          <EntitySet Name="Units" EntityType="SupplyMeModel.Unit" />
-          <AssociationSet Name="FK_Category_Category" Association="SupplyMeModel.FK_Category_Category">
+          <EntitySet Name="Categories" EntityType="supplymeModel.Category" />
+          <EntitySet Name="Hotels" EntityType="supplymeModel.Hotel" />
+          <EntitySet Name="Items" EntityType="supplymeModel.Item" />
+          <EntitySet Name="Orders" EntityType="supplymeModel.Order" />
+          <EntitySet Name="OrderDetails" EntityType="supplymeModel.OrderDetail" />
+          <EntitySet Name="Units" EntityType="supplymeModel.Unit" />
+          <AssociationSet Name="FK_Category_Category" Association="supplymeModel.FK_Category_Category">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Category1" EntitySet="Categories" />
           </AssociationSet>
-          <AssociationSet Name="FK_Item_Category" Association="SupplyMeModel.FK_Item_Category">
+          <AssociationSet Name="FK_Item_Category" Association="supplymeModel.FK_Item_Category">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Item" EntitySet="Items" />
           </AssociationSet>
-          <AssociationSet Name="FK_OrderDetails_Item" Association="SupplyMeModel.FK_OrderDetails_Item">
+          <AssociationSet Name="FK_OrderDetails_Item" Association="supplymeModel.FK_OrderDetails_Item">
             <End Role="Item" EntitySet="Items" />
             <End Role="OrderDetails" EntitySet="OrderDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_OrderDetails_Order" Association="SupplyMeModel.FK_OrderDetails_Order">
+          <AssociationSet Name="FK_OrderDetails_Order" Association="supplymeModel.FK_OrderDetails_Order">
             <End Role="Order" EntitySet="Orders" />
             <End Role="OrderDetails" EntitySet="OrderDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_OrderDetails_Unit" Association="SupplyMeModel.FK_OrderDetails_Unit">
+          <AssociationSet Name="FK_OrderDetails_Unit" Association="supplymeModel.FK_OrderDetails_Unit">
             <End Role="Unit" EntitySet="Units" />
             <End Role="OrderDetails" EntitySet="OrderDetails" />
           </AssociationSet>
-          <AssociationSet Name="ItemUnit" Association="SupplyMeModel.ItemUnit">
+          <AssociationSet Name="ItemUnit" Association="supplymeModel.ItemUnit">
             <End Role="Item" EntitySet="Items" />
             <End Role="Unit" EntitySet="Units" />
           </AssociationSet>
@@ -241,22 +242,22 @@
           <Property Name="CategoryId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
           <Property Name="CategoryParentId" Type="Int32" />
-          <NavigationProperty Name="Category1" Relationship="SupplyMeModel.FK_Category_Category" FromRole="Category" ToRole="Category1" />
-          <NavigationProperty Name="Category2" Relationship="SupplyMeModel.FK_Category_Category" FromRole="Category1" ToRole="Category" />
-          <NavigationProperty Name="Items" Relationship="SupplyMeModel.FK_Item_Category" FromRole="Category" ToRole="Item" />
+          <NavigationProperty Name="Category1" Relationship="supplymeModel.FK_Category_Category" FromRole="Category" ToRole="Category1" />
+          <NavigationProperty Name="Category2" Relationship="supplymeModel.FK_Category_Category" FromRole="Category1" ToRole="Category" />
+          <NavigationProperty Name="Items" Relationship="supplymeModel.FK_Item_Category" FromRole="Category" ToRole="Item" />
         </EntityType>
         <EntityType Name="Hotel">
           <Key>
             <PropertyRef Name="HotelId" />
           </Key>
           <Property Name="HotelId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="HotelName" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="UserName" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
           <Property Name="Password" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
           <Property Name="LastLoginDate" Type="DateTime" Precision="3" />
-          <Property Type="String" Name="UserName" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="HotelEmail" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="HotelContactPerson" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="HotelPhoneNumber" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="HotelName" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="HotelEmail" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="HotelContactPerson" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="HotelPhoneNumber" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
         </EntityType>
         <EntityType Name="Item">
           <Key>
@@ -265,9 +266,9 @@
           <Property Name="ItemId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="ItemName" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
           <Property Name="ItemCategoryId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Category" Relationship="SupplyMeModel.FK_Item_Category" FromRole="Item" ToRole="Category" />
-          <NavigationProperty Name="OrderDetails" Relationship="SupplyMeModel.FK_OrderDetails_Item" FromRole="Item" ToRole="OrderDetails" />
-          <NavigationProperty Name="Units" Relationship="SupplyMeModel.ItemUnit" FromRole="Item" ToRole="Unit" />
+          <NavigationProperty Name="Category" Relationship="supplymeModel.FK_Item_Category" FromRole="Item" ToRole="Category" />
+          <NavigationProperty Name="OrderDetails" Relationship="supplymeModel.FK_OrderDetails_Item" FromRole="Item" ToRole="OrderDetails" />
+          <NavigationProperty Name="Units" Relationship="supplymeModel.ItemUnit" FromRole="Item" ToRole="Unit" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -275,8 +276,7 @@
           </Key>
           <Property Name="OrderId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="UserId" Type="Int32" />
-          <Property Name="OrderMessage" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="OrderDetails" Relationship="SupplyMeModel.FK_OrderDetails_Order" FromRole="Order" ToRole="OrderDetails" />
+          <NavigationProperty Name="OrderDetails" Relationship="supplymeModel.FK_OrderDetails_Order" FromRole="Order" ToRole="OrderDetails" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
@@ -287,9 +287,10 @@
           <Property Name="OrderId" Type="Int32" Nullable="false" />
           <Property Name="OrderUnitId" Type="Int32" />
           <Property Name="OrderItemId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Item" Relationship="SupplyMeModel.FK_OrderDetails_Item" FromRole="OrderDetails" ToRole="Item" />
-          <NavigationProperty Name="Order" Relationship="SupplyMeModel.FK_OrderDetails_Order" FromRole="OrderDetails" ToRole="Order" />
-          <NavigationProperty Name="Unit" Relationship="SupplyMeModel.FK_OrderDetails_Unit" FromRole="OrderDetails" ToRole="Unit" />
+          <Property Name="OrderMessage" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Item" Relationship="supplymeModel.FK_OrderDetails_Item" FromRole="OrderDetails" ToRole="Item" />
+          <NavigationProperty Name="Order" Relationship="supplymeModel.FK_OrderDetails_Order" FromRole="OrderDetails" ToRole="Order" />
+          <NavigationProperty Name="Unit" Relationship="supplymeModel.FK_OrderDetails_Unit" FromRole="OrderDetails" ToRole="Unit" />
         </EntityType>
         <EntityType Name="Unit">
           <Key>
@@ -297,12 +298,12 @@
           </Key>
           <Property Name="UnitId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="UnitName" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="OrderDetails" Relationship="SupplyMeModel.FK_OrderDetails_Unit" FromRole="Unit" ToRole="OrderDetails" />
-          <NavigationProperty Name="Items" Relationship="SupplyMeModel.ItemUnit" FromRole="Unit" ToRole="Item" />
+          <NavigationProperty Name="OrderDetails" Relationship="supplymeModel.FK_OrderDetails_Unit" FromRole="Unit" ToRole="OrderDetails" />
+          <NavigationProperty Name="Items" Relationship="supplymeModel.ItemUnit" FromRole="Unit" ToRole="Item" />
         </EntityType>
         <Association Name="FK_Category_Category">
-          <End Role="Category" Type="SupplyMeModel.Category" Multiplicity="0..1" />
-          <End Role="Category1" Type="SupplyMeModel.Category" Multiplicity="*" />
+          <End Role="Category" Type="supplymeModel.Category" Multiplicity="0..1" />
+          <End Role="Category1" Type="supplymeModel.Category" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
               <PropertyRef Name="CategoryId" />
@@ -313,10 +314,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Item_Category">
-          <End Role="Category" Type="SupplyMeModel.Category" Multiplicity="1">
+          <End Role="Category" Type="supplymeModel.Category" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Item" Type="SupplyMeModel.Item" Multiplicity="*" />
+          <End Role="Item" Type="supplymeModel.Item" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
               <PropertyRef Name="CategoryId" />
@@ -327,10 +328,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderDetails_Item">
-          <End Role="Item" Type="SupplyMeModel.Item" Multiplicity="1">
+          <End Role="Item" Type="supplymeModel.Item" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="OrderDetails" Type="SupplyMeModel.OrderDetail" Multiplicity="*" />
+          <End Role="OrderDetails" Type="supplymeModel.OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Item">
               <PropertyRef Name="ItemId" />
@@ -341,10 +342,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderDetails_Order">
-          <End Role="Order" Type="SupplyMeModel.Order" Multiplicity="1">
+          <End Role="Order" Type="supplymeModel.Order" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="OrderDetails" Type="SupplyMeModel.OrderDetail" Multiplicity="*" />
+          <End Role="OrderDetails" Type="supplymeModel.OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Order">
               <PropertyRef Name="OrderId" />
@@ -355,8 +356,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderDetails_Unit">
-          <End Role="Unit" Type="SupplyMeModel.Unit" Multiplicity="0..1" />
-          <End Role="OrderDetails" Type="SupplyMeModel.OrderDetail" Multiplicity="*" />
+          <End Role="Unit" Type="supplymeModel.Unit" Multiplicity="0..1" />
+          <End Role="OrderDetails" Type="supplymeModel.OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Unit">
               <PropertyRef Name="UnitId" />
@@ -367,17 +368,17 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="ItemUnit">
-          <End Role="Item" Type="SupplyMeModel.Item" Multiplicity="*" />
-          <End Role="Unit" Type="SupplyMeModel.Unit" Multiplicity="*" />
+          <End Role="Item" Type="supplymeModel.Item" Multiplicity="*" />
+          <End Role="Unit" Type="supplymeModel.Unit" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SupplyMeModelStoreContainer" CdmEntityContainer="SupplyMeEntities">
+        <EntityContainerMapping StorageEntityContainer="supplymeModelStoreContainer" CdmEntityContainer="SupplyMeEntities">
           <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="SupplyMeModel.Category">
+            <EntityTypeMapping TypeName="supplymeModel.Category">
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
@@ -386,21 +387,21 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Hotels">
-            <EntityTypeMapping TypeName="SupplyMeModel.Hotel">
+            <EntityTypeMapping TypeName="supplymeModel.Hotel">
               <MappingFragment StoreEntitySet="Hotel">
-                <ScalarProperty Name="HotelPhoneNumber" ColumnName="HotelPhoneNumber" />
-                <ScalarProperty Name="HotelContactPerson" ColumnName="HotelContactPerson" />
-                <ScalarProperty Name="HotelEmail" ColumnName="HotelEmail" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="HotelId" ColumnName="HotelId" />
-                <ScalarProperty Name="HotelName" ColumnName="HotelName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="HotelName" ColumnName="HotelName" />
+                <ScalarProperty Name="HotelEmail" ColumnName="HotelEmail" />
+                <ScalarProperty Name="HotelContactPerson" ColumnName="HotelContactPerson" />
+                <ScalarProperty Name="HotelPhoneNumber" ColumnName="HotelPhoneNumber" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Items">
-            <EntityTypeMapping TypeName="SupplyMeModel.Item">
+            <EntityTypeMapping TypeName="supplymeModel.Item">
               <MappingFragment StoreEntitySet="Item">
                 <ScalarProperty Name="ItemId" ColumnName="ItemId" />
                 <ScalarProperty Name="ItemName" ColumnName="ItemName" />
@@ -409,34 +410,34 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="SupplyMeModel.Order">
+            <EntityTypeMapping TypeName="supplymeModel.Order">
               <MappingFragment StoreEntitySet="Order">
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="OrderMessage" ColumnName="OrderMessage" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderDetails">
-            <EntityTypeMapping TypeName="SupplyMeModel.OrderDetail">
+            <EntityTypeMapping TypeName="supplymeModel.OrderDetail">
               <MappingFragment StoreEntitySet="OrderDetails">
                 <ScalarProperty Name="OrderDetailsId" ColumnName="OrderDetailsId" />
                 <ScalarProperty Name="OrderQty" ColumnName="OrderQty" />
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
                 <ScalarProperty Name="OrderUnitId" ColumnName="OrderUnitId" />
                 <ScalarProperty Name="OrderItemId" ColumnName="OrderItemId" />
+                <ScalarProperty Name="OrderMessage" ColumnName="OrderMessage" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Units">
-            <EntityTypeMapping TypeName="SupplyMeModel.Unit">
+            <EntityTypeMapping TypeName="supplymeModel.Unit">
               <MappingFragment StoreEntitySet="Unit">
                 <ScalarProperty Name="UnitId" ColumnName="UnitId" />
                 <ScalarProperty Name="UnitName" ColumnName="UnitName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="ItemUnit" TypeName="SupplyMeModel.ItemUnit" StoreEntitySet="ItemUnit">
+          <AssociationSetMapping Name="ItemUnit" TypeName="supplymeModel.ItemUnit" StoreEntitySet="ItemUnit">
             <EndProperty Name="Item">
               <ScalarProperty Name="ItemId" ColumnName="ItemId" />
             </EndProperty>

@@ -6,22 +6,24 @@
 <div class="container">
     <div class="row">
         <div class="request-title col-lg-12">
-            WELCOME BACK, <strong>@User.Identity.Name</strong>
+            <div class="col-md-10">
+                WELCOME BACK, <strong>@User.Identity.Name</strong>
+            </div>
+            <div class="col-md-2">
+                <button type="button" onclick="window.location.href='/logoff'" class="pull-right submit-btn">LOG OUT</button>
+            </div>
         </div>
     </div>
     <div class="row">
         <div class="text col-lg-10">
-            We received your order and will get back to you as soon as possible. Thank You !
+            We received your order and will get back to you as soon as possible. Thank you!
         </div>
         <div class="clear-fix"></div>
         <hr class="hr-line" />
     </div>
     <div class="row">
-        <div class="request-title sub-title col-xs-6">
+        <div class="request-title sub-title col-xs-12">
             <strong>ORDER REPORT</strong>
-        </div>
-        <div class="col-xs-6">
-            <button type="button" onclick="location.href='/request';" class="pull-right submit-btn">REORDER</button>
         </div>
     </div>
     <div class="row">
@@ -31,31 +33,30 @@
             <div class="clear-fix"></div>
         </div>
         <div class="report-item">
-            <div class="col-xs-2">Order Message:</div>
-            <div class="col-xs-10">@Model.OrderMsg</div>
-            <div class="clear-fix"></div>
-        </div>
-        <div class="report-item">
             <div class="col-xs-12 col-lg-12">
                 <table>
                     <thead>
                         <tr>
+                            <th>Category</th>
                             <th>Item</th>
-                            <th>Qty</th>
-                            <th>Unit</th>
+                            <th>Details</th>
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach(var item in @Model.OrderReportDetails) {
-                        <tr>
-                            <td>@item.ItemName</td>
-                            <td>@item.Qty</td>
-                            <td>@item.UnitName</td>
-                        </tr>
-                    }
+                        @foreach (var item in @Model.OrderReportDetails)
+                        {
+                            <tr>
+                                <td>@item.CategoryName</td>
+                                <td>@item.ItemName</td>
+                                <td>@item.OrderMessage</td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
+        </div>
+        <div class="col-xs-6 col-xs-offset-6">
+            <button type="button" onclick="location.href='/supplyrequest';" class="pull-right submit-btn">NEW ORDER</button>
         </div>
     </div>
 </div>

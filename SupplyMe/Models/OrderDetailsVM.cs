@@ -12,6 +12,7 @@ namespace SupplyMe.Models
         public int ItemId { get; set; }
         public Nullable<int> UnitId { get; set; }
         public int Qty { get; set; }
+        public string OrderMessage { get; set; }
 
         public OrderDetail toModel()
         {
@@ -20,6 +21,7 @@ namespace SupplyMe.Models
             detail.OrderItemId = this.ItemId;
             detail.OrderUnitId = this.UnitId;
             detail.OrderQty = this.Qty;
+            detail.OrderMessage = this.OrderMessage;
             return detail;
         }
     }

@@ -21,7 +21,6 @@ namespace DataLayer.Context
     
         public int OrderId { get; set; }
         public Nullable<int> UserId { get; set; }
-        public string OrderMessage { get; set; }
     
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }

@@ -91,18 +91,8 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SupplyMe.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Context\SupplyMe.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SupplyMe.edmx</DependentUpon>
-      <LastGenOutput>SupplyMe.Context.cs</LastGenOutput>
-    </None>
     <None Include="Context\SupplyMe.edmx.diagram">
       <DependentUpon>SupplyMe.edmx</DependentUpon>
-    </None>
-    <None Include="Context\SupplyMe.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SupplyMe.edmx</DependentUpon>
-      <LastGenOutput>SupplyMe.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -110,6 +100,18 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Content Include="Context\SupplyMe.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SupplyMe.edmx</DependentUpon>
+      <LastGenOutput>SupplyMe.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Context\SupplyMe.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SupplyMe.edmx</DependentUpon>
+      <LastGenOutput>SupplyMe.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

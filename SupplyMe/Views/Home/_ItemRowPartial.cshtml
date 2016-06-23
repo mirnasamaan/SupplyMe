@@ -4,40 +4,28 @@
 {
     <div class="item order-detail">
         <div class="col-lg-6">
-            <select onchange="getUnits(this);" class="order-detail-item">
-                <option value="0">SELECT ITEM</option>
-                @foreach (DataLayer.Context.Category cat in ViewBag.Cats)
+            <select onchange="getItems(this);" class="order-detail-item">
+                <option value="" disabled selected>SELECT CATEGORY</option>
+                @foreach (var cat in ViewBag.Cats)
                 {
-                    <optgroup label="@cat.CategoryName">
-                        @foreach (DataLayer.Context.Item item in cat.Items)
-                        {
-                            <option value="@item.ItemId">@item.ItemName</option>
-                        }
-                        @foreach (DataLayer.Context.Category subcat in cat.Category1)
-                        {
-                            <optgroup label="@subcat.CategoryName">
-                                @foreach (DataLayer.Context.Item item in subcat.Items)
-                                {
-                                    <option value="@item.ItemId">@item.ItemName</option>
-                                }
-                            </optgroup>
-                        }
-                    </optgroup>
+                    <option value="@cat.ID">@cat.Name</option>
                 }
             </select>
-            <input type="hidden" class="item-id" />
+            <input type="hidden" class="cat-id" value="0" />
         </div>
-        <div class="col-lg-3">
-            <input class="form-control qty order-detail-qty" placeholder="QTY" type="text" @(Model.Qty == 0 ? "" : "value="+@Model.Qty+"") />
-        </div>
-        <div class="col-lg-2 unit-parent">
-            <select class="order-detail-unit">
-                <option value="">SELECT UNIT</option>
+        <div class="col-lg-5 item-parent">
+            <select onchange="selectItem(this);" class="order-detail-item">
+                <option value="" disabled selected>SELECT ITEM</option>
             </select>
+            <input type="hidden" class="item-id" value="0" />
         </div>
         <div class="col-lg-1 remove-item">
             <button class="pull-left order-detail-delete" onclick="removeItem(this);return false;"><i class="fa fa-minus"></i></button>
         </div>
         <div class="clear-fix"></div>
+        <div class="col-lg-12">
+            <textarea class="full-width order-detail-msg" placeholder="Type order details here">@Model.OrderMessage</textarea>
+        </div>
     </div>
+    
 }

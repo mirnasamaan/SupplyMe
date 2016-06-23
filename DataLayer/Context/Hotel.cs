@@ -15,10 +15,10 @@ namespace DataLayer.Context
     public partial class Hotel
     {
         public int HotelId { get; set; }
-        public string HotelName { get; set; }
+        public string UserName { get; set; }
         public string Password { get; set; }
         public Nullable<System.DateTime> LastLoginDate { get; set; }
-        public string UserName { get; set; }
+        public string HotelName { get; set; }
         public string HotelEmail { get; set; }
         public string HotelContactPerson { get; set; }
         public string HotelPhoneNumber { get; set; }

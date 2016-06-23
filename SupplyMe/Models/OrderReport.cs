@@ -8,7 +8,6 @@ namespace SupplyMe.Models
     public class OrderReport
     {
         public int OrderId { get; set; }
-        public string OrderMsg { get; set; }
         public List<OrderReportDetail> OrderReportDetails { get; set; }
     }
 }

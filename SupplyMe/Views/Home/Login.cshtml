@@ -14,7 +14,7 @@
                 <div class="login-title row">LOGIN</div>
                 @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "row", id = "login-form" }))
                 {
-                    @Html.AntiForgeryToken()
+                    @*Html.AntiForgeryToken()*@
                     @Html.ValidationSummary()
                     <div class="form-group">
                         <input class="col-xs-8 col-xs-offset-2" id="name" name="UserName" type="text" placeholder="Username" />
@@ -22,6 +22,8 @@
                     <div class="form-group">
                         <input class="col-xs-8 col-xs-offset-2" id="password" name="Password" type="password" placeholder="Password" />
                     </div>
+                    <div class="g-recaptcha" data-sitekey="6LdemCATAAAAAGggoBWrMjnR75vOiGuMtjZBUhfr"></div>
+                    <input name="recaptcha" type="hidden" value="" />
                     <div class="full-width">
                         <button type="submit">LOGIN</button>
                     </div>
@@ -31,13 +33,28 @@
         </div>
     </div>
 </div>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <script>
     $(document).ready(function () {
+        $.validator.addMethod("reCaptchaValidate", function (value, element) {
+            alert(jQuery('.g-recaptcha-response').val());
+            var googleResponse = jQuery('.g-recaptcha-response').val();
+            return googleResponse;
+        },'Validation required.');
+
         $("#login-form").validate({
             rules: {
                 UserName: "required",
-                Password: "required"
+                Password: "required",
+                recaptcha: { reCaptchaValidate: true }
+            },
+            errorPlacement: function (error, element) {
+                if (element.attr("name") == "recaptcha") {
+                    error.insertAfter(".g-recaptcha > div > div");
+                } else {
+                    error.insertAfter(element);
             }
+        }
         });
     });
 
@@ -50,9 +67,9 @@
         if (value != "") {
             $(this).css("background-image", "none");
         } else {
-            if ($(this).attr("id") == "user") {
+            if ($(this).attr("id") == "name") {
                 $(this).css("background", "url('/Content/img/email_icon.png') no-repeat left");
-            } else {
+            } else if ($(this).attr("id") == "password") {
                 $(this).css("background", "url('/Content/img/pass_icon.png') no-repeat left");
             }
 

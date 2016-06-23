@@ -10,7 +10,6 @@ namespace SupplyMe.Models
     {
         public int OrderID { get; set; }
         public List<OrderDetailsVM> OrderDetails { get; set; }
-        public string OrderMessage { get; set; }
 
         public OrderVM()
         {
@@ -20,7 +19,6 @@ namespace SupplyMe.Models
         public Order toModel() {
             Order order = new Order();
             order.OrderId = this.OrderID;
-            order.OrderMessage = this.OrderMessage;
             foreach (var item in this.OrderDetails)
             {
                 order.OrderDetails.Add(item.toModel());

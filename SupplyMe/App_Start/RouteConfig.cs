@@ -20,9 +20,9 @@ namespace SupplyMe
             );
 
             routes.MapRoute(
-                name: "request",
-                url: "request",
-                defaults: new { controller = "Home", action = "Request" }
+                name: "supplyrequest",
+                url: "supplyrequest",
+                defaults: new { controller = "Home", action = "SupplyRequest" }
             );
 
             routes.MapRoute(
@@ -32,9 +32,15 @@ namespace SupplyMe
             );
 
             routes.MapRoute(
+                name: "logoff",
+                url: "logoff",
+                defaults: new { controller = "Home", action = "LogOff" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Request", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "SupplyRequest", id = UrlParameter.Optional }
             );
         }
     }

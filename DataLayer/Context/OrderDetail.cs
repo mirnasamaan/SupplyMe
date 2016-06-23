@@ -19,6 +19,7 @@ namespace DataLayer.Context
         public int OrderId { get; set; }
         public Nullable<int> OrderUnitId { get; set; }
         public int OrderItemId { get; set; }
+        public string OrderMessage { get; set; }
     
         public virtual Item Item { get; set; }
         public virtual Order Order { get; set; }

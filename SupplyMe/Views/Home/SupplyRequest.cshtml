@@ -6,7 +6,12 @@
 <div class="container">
     <div class="row">
         <div class="request-title col-lg-12">
-            WELCOME BACK, <strong>@User.Identity.Name</strong>
+            <div class="col-md-10">
+                WELCOME BACK, <strong>@User.Identity.Name</strong>
+            </div>
+            <div class="col-md-2">
+                <button type="button" onclick="window.location.href='/logoff'" class="pull-right submit-btn">LOG OUT</button>
+            </div>
         </div>
     </div>
     <div class="row">
@@ -21,9 +26,9 @@
             <strong>SUPPLY REQUEST</strong>
         </div>
     </div>
-    @using (Html.BeginForm("Request", "Home", FormMethod.Post, new { @class = "request-form", id = "request-form" }))
+    @using (Html.BeginForm("SupplyRequest", "Home", FormMethod.Post, new { @class = "request-form", id = "request-form" }))
     {
-        @Html.AntiForgeryToken()
+@*Html.AntiForgeryToken()*@
         <div class="validation-summary">
             @Html.ValidationSummary()
         </div>
@@ -47,22 +52,23 @@
                 }
             }
             <div class="col-lg-12">
-                <textarea class="full-width" name="OrderMessage" placeholder="Type your message here">@Model.OrderMessage</textarea>
-            </div>
-            <div class="col-lg-12">
                 <button type="submit" class="pull-right submit-btn">SUBMIT</button>
             </div>
         </div>
     }
 </div>
+@Html.Partial("_LoadingPartialView")
+
 <script>
 
     $(document).ready(function () {
-        $("select").bselect();
+        //$("select").bselect();
+        $('select').select2();
+        //Initializebselect();
         ReloadFormItems();
         $.validator.addMethod("itemRequired", function (value, element) {
             return (value != "0");
-        }, function(params, element) {
+        }, function (params, element) {
             return 'This field is required.'
         });
         validateForm();
@@ -74,31 +80,47 @@
             url: "/Home/AddItemPartialView",
             success: function (result) {
                 $(".items-container").prepend(result);
-                $("select").bselect();
+                $(".order-detail-item:nth-child(1)").select2();
+                $(".order-detail-unit:nth-child(1)").select2();
                 ReloadFormItems();
             }
         });
     }
 
-    function getUnits(e) {
+    function selectItem(e) {
+        var selected = $(e).val();
+        $(e).parent().children("input").val(selected);
+    }
+
+    function getItems(e) {
         var selected = $(e).val();
         $(e).parent().children("input").val(selected);
         var parent = $(e).parent().parent();
         if (selected != 0) {
             $.ajax({
-                url: "/Home/GetUnitsByItemId",
+                url: "/Home/GetCategoryId",
                 type: "POST",
-                data: { itemId: selected },
-                success: function (units) {
-                    $(parent).children(".unit-parent").html("<select class='order-detail-unit'></select>");
-                    for (var i = 0; i < units.length; i++) {
-                        $(parent).children(".unit-parent").children(".order-detail-unit").append("<option value=" + units[i].UnitId + ">" + units[i].UnitName + "</option>");
-                    }
-                    $(".order-detail-unit").bselect();
-                    ReloadFormItems()
+                data: { catId: selected },
+                beforeSend: function () {
+                    $(".loading").removeClass("hidden");
+                },
+                success: function (data) {
+                    $(parent).children(".item-parent").children(".order-detail-item").html("");
+                    $(parent).children(".item-parent").children(".order-detail-item").append('<option value="" disabled selected>SELECT ITEM</option>');
+                    $(parent).children(".item-parent").children(".order-detail-item").append(data);
+                    $(parent).children(".item-parent").children(".order-detail-item").select2();
+                    ReloadFormItems();
+                },
+                complete: function () {
+                    $(".loading").addClass("hidden");
                 }
             });
         }
+    }
+
+    function Initializebselect() {
+        $("select").bselect("destroy");
+        $("select").bselect();
     }
 
     function removeItem(element) {
@@ -113,21 +135,17 @@
     }
 
     function ReloadFormItems() {
-        $(".items-container .order-detail-item").each(function (order) {
+        $(".items-container .item-parent .order-detail-item").each(function (order) {
             $(this).attr("name", "OrderDetails[" + order + "].ItemId");
         });
-        $(".items-container .order-detail-qty").each(function (order) {
-            $(this).attr("name", "OrderDetails[" + order + "].Qty");
-            $(this).attr("id", "qty_" + order);
-        });
-        $(".items-container .order-detail-unit").each(function (order) {
-            $(this).attr("name", "OrderDetails[" + order + "].UnitId");
+        $(".items-container .order-detail-msg").each(function (order) {
+            $(this).attr("name", "OrderDetails[" + order + "].OrderMessage");
         });
         $(".items-container .item-id").each(function (order) {
             $(this).attr("name", "ItemIdHidden[" + order + "]");
         });
-        $(".items-container .order-detail-item").parent().children(".bselect").each(function (order) {
-            $(this).attr("id", "itemId_" + order);
+        $(".items-container .cat-id").each(function (order) {
+            $(this).attr("name", "CatIdHidden[" + order + "]");
         });
 
         $('#request-form').data('validator', null);
@@ -142,8 +160,9 @@
             rules: (function () {
                 results = {}
                 for (var i = 0; i < $(".order-detail").length; i++) {
+                    results["CatIdHidden[" + i + "]"] = { itemRequired: true }
                     results["ItemIdHidden[" + i + "]"] = { itemRequired: true }
-                    results["OrderDetails[" + i + "].Qty"] = { required: true, number: true }
+                    results["OrderDetails[" + i + "].OrderMessage"] = { required: true }
                 }
                 return results;
             })(),

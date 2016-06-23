@@ -50,5 +50,16 @@ namespace DataLayer.Repositories
             }
         }
 
+        public Category GetCategoryByID(int catId)
+        {
+            if (Context.Categories.Any(i => i.CategoryId == catId))
+            {
+                return Context.Categories.FirstOrDefault(i => i.CategoryId == catId);
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

@@ -4,19 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bc13b91e146048a090cab5f7c0f08399" Name="Diagram1">
-        <EntityTypeShape EntityType="SupplyMeModel.Category" Width="1.5" PointX="1.5" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SupplyMeModel.Hotel" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SupplyMeModel.Item" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SupplyMeModel.Order" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SupplyMeModel.OrderDetail" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="SupplyMeModel.Unit" Width="1.5" PointX="0.75" PointY="11.125" IsExpanded="true" />
-        <AssociationConnector Association="SupplyMeModel.FK_Category_Category" ManuallyRouted="false" />
-        <AssociationConnector Association="SupplyMeModel.FK_Item_Category" ManuallyRouted="false" />
-        <AssociationConnector Association="SupplyMeModel.FK_OrderDetails_Item" ManuallyRouted="false" />
-        <AssociationConnector Association="SupplyMeModel.FK_OrderDetails_Order" ManuallyRouted="false" />
-        <AssociationConnector Association="SupplyMeModel.FK_OrderDetails_Unit" ManuallyRouted="false" />
-        <AssociationConnector Association="SupplyMeModel.ItemUnit" ManuallyRouted="false" />
+      <Diagram DiagramId="6a4401880d2e441ebbc3ebda8a4702f5" Name="Diagram1">
+        <EntityTypeShape EntityType="supplymeModel.Category" Width="1.5" PointX="1.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="supplymeModel.Hotel" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="supplymeModel.Item" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="supplymeModel.Order" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="supplymeModel.OrderDetail" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="supplymeModel.Unit" Width="1.5" PointX="0.75" PointY="11.125" IsExpanded="true" />
+        <AssociationConnector Association="supplymeModel.FK_Category_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="supplymeModel.FK_Item_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="supplymeModel.FK_OrderDetails_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="supplymeModel.FK_OrderDetails_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="supplymeModel.FK_OrderDetails_Unit" ManuallyRouted="false" />
+        <AssociationConnector Association="supplymeModel.ItemUnit" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

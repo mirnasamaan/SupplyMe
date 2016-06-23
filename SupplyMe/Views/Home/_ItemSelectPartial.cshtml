@@ -1,0 +1,18 @@
+﻿@model DataLayer.Context.Category
+@{
+    ViewBag.Title = "_ItemSelectPartial";
+}
+
+@foreach (DataLayer.Context.Item item in Model.Items)
+{
+    <option value="@item.ItemId">@item.ItemName</option>
+}
+@foreach (DataLayer.Context.Category subcat in Model.Category1)
+{
+    <optgroup label="@subcat.CategoryName">
+        @foreach (DataLayer.Context.Item item in subcat.Items)
+        {
+            <option class="sub-cat" value="@item.ItemId">@item.ItemName</option>
+        }
+    </optgroup>
+}
