@@ -9,8 +9,8 @@ namespace DataLayer.Repositories
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
-        private SupplyMeEntities _entities = new SupplyMeEntities();
-        public SupplyMeEntities Context
+        private supplyme_dbEntities _entities = new supplyme_dbEntities();
+        public supplyme_dbEntities Context
         {
 
             get { return _entities; }

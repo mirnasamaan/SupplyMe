@@ -13,10 +13,10 @@ namespace DataLayer.Context
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SupplyMeEntities : DbContext
+    public partial class supplyme_dbEntities : DbContext
     {
-        public SupplyMeEntities()
-            : base("name=SupplyMeEntities")
+        public supplyme_dbEntities()
+            : base("name=supplyme_dbEntities")
         {
         }
     
